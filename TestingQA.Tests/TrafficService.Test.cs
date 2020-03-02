@@ -11,6 +11,7 @@ namespace TestingQA.Tests
         private string invalidLocation;
         private DateTime happyDateAndTime;
         private DateTime invalidDateAndTime;
+             
 
         [SetUp]
         public void Setup()
@@ -74,6 +75,59 @@ namespace TestingQA.Tests
             });
 
             Assert.That(ex.Message, Is.EqualTo("Invalid dateAndTime input."));
+        }
+        
+        [Test]
+        public void DatabaseConnection_Happy()
+        {
+            Database db = new Database(...);
+            bool dbconnection = db.Open();
+            Assert.IsTrue(dbconnection);
+        }
+        
+        [Test]
+        public void DatabaseConnection_False()
+        {
+            Database db = new Database(...);
+            bool dbconnection = falseDBConnection;
+            Assert.IsTrue(dbconnection);
+        }
+        
+         [Test]
+        public void ReadTrafficDataFromDatabase_Happy()
+        {
+            TrafficDataModel expected = new TrafficDataModel()
+            {
+                Database db = new Database(...);
+                dbconnection = ConnectToDatabse(db.Open());
+                Location = happyLocation,
+                DateAndTime = happyDateAndTime,
+                
+            };
+            var actual = TrafficService.ReadTrafficDataFromDatabase(dbconnection, happyLocation, happyDateAndTime);
+
+            Assert.IsTrue(dbconnnection);
+            Assert.AreEqual(expected.Location, actual.Location);
+            Assert.AreEqual(expected.DateAndTime, actual.DateAndTime);
+           
+        }
+        [Test]
+        public void ReadTrafficDataFromDatabase_False()
+        {
+            TrafficDataModel expected = new TrafficDataModel()
+            {
+                Database db = new Database(...);
+                dbconnection = false;
+                Location = invalidLocation,
+                DateAndTime = invalidDateAndTime,
+                
+            };
+            var actual = TrafficService.ReadTrafficDataFromDatabase(dbconnection, happyLocation, happyDateAndTime);
+
+            Assert.IsTrue(dbconnnection);
+            Assert.AreEqual(expected.Location, actual.Location);
+            Assert.AreEqual(expected.DateAndTime, actual.DateAndTime);
+           
         }
     }
 }
