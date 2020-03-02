@@ -22,5 +22,22 @@ namespace TestingQA.Services
         {
             return null;
         }
+        
+        public static TrafficDataModel ReadTrafficFromDatabase(bool dbconnection, string location, DateTime dateAndTime1)
+        {
+           if(dbconnection == true){
+            return new TrafficDataModel()
+            {
+                dbconn
+                Location = location;
+                DateAndtime = dateAndTime;
+            }
+           }
+        }
+        
+        public static ConnectToDatabase(bool dbconnection)
+        {
+            return dbconnection;
+        }
     }
 }
